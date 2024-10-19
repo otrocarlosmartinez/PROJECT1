@@ -10,15 +10,15 @@ Desarrollar un análisis completo y un modelo predictivo para los precios de viv
 **Dataset:**
 https://www.kaggle.com/datasets/imanollaconcha/barcelona-fotocasahousingprices?select=Barcelona_Fotocasa_HousingPrices.csv 
 
-price: The price of the real-state.
-rooms: Number of rooms.
-bathroom: Number of bathrooms.
-lift: whether a building has an elevator (also known as a lift in some regions) or not
-terrace: If it has a terrace or not.
-square_meters: Number of square meters.
-real_state: Kind of real-state.
-neighborhood: Neighborhood
-square_meters_price: Price of the square meter.
+- **price**: The price of the real-state.
+- **rooms**: Number of rooms.
+- **bathroom**: Number of bathrooms.
+- **lift**: whether a building has an elevator (also known as a lift in some regions) or not
+- **terrace**: If it has a terrace or not.
+- **square_meters**: Number of square meters.
+- **real_state**: Kind of real-state.
+- **neighborhood**: Neighborhood
+- **square_meters_price**: Price of the square meter.
 
 **Requisitos:**
 1. SQL y Python: Debéis ser capaces de extraer, transformar y cargar datos (ETL) utilizando tanto SQL como Python. El uso de bases de datos relacionales es clave para gestionar grandes volúmenes de datos de viviendas. 
