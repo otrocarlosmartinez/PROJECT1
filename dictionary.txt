@@ -1,0 +1,10 @@
+price: The price of the real-state.
+rooms: Number of rooms.
+bathroom: Number of bathrooms.
+lift: whether a building has an elevator (also known as a lift in some regions) or not
+terrace: If it has a terrace or not.
+square_meters: Number of square meters.
+real_state: Kind of real-state.
+neighborhood: Neighborhood
+square_meters_price: Price of the square meter.
+
