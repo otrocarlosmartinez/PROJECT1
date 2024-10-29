@@ -1,9 +1,8 @@
-# Consolidated notes on Data Overview
-
+# Notes on Data Overview
 - There are 8188 rows and 10 columns.
 - The variable 'Unnamed' represent index and should be deleted from data
 - Data types are aligned with information
-- There is missing data (NaN) on variable 'real_state'. To be replaced by "other"
+- There is missing data (NaN) on variable 'real_state'. To be replaced by "unknown"
 - There are four types of real states being the most common "flat"
 - Most units do not have terrace
 - Most units do have lift
@@ -12,48 +11,59 @@
 - Units prices goes from 320EUR to 15000EUR/month, with mean of 1444EUR/month
 - price range is assumed referred to monthly rent, so considered as EUR per month
 - Units prices by square meter goes from 4.9EUR/m2/month to 186EUR/m2/month, with mean of 17.7EUR/m2/month
-- There are units listed with cero rooms (to be investigated)
-- Target variable for modeling is "price"
+- There are units listed with cero rooms
+- Target variable for modeling is "priceS"
 
-
-# Consolidated notes on Exploratory Data Analysis
-
+# Notes on Exploratory Data Analysis
 **Functions:**
 - univariate_numerical(data): Function to generate two plots for each numerical variable. Histplot for variable distribution. Boxplot for statistical summary
 - univariate_categorical(data): Function to generate countplot for each categorical variable. Labeled with count and percentage
 - plot_crosstab_bar_count(df, var_interest): Function to create a barplot of crosstab of the variable of interest vs each of the rest of categorical variables. Labeled with counts
 - plot_crosstab_heat_perc(df, var_interest): Function to create a heatmap of crosstab of the variable of interest vs each of the rest of catagorical variables. Labeled with counts, percentage by row, percentage by column
 - boxplot_by_group(df, group, var, outliers): boxplot for a numerical variable of interest vs a categorical variable. with or without outliers. includes data mean and mean by category
-
-**Missing value treatment:**
-- created category "other" in 'real_state' variable replacing NaN
-
-**Feature engineering:**
-- Droped variable "Unnamed: 0" having no value for modeling
-- There are units with cero rooms, considered real data.
-
-**Outlier detection and treatment**
-- There are outliers in all variables. Considered natural and not to be caped.
-
 **Univariate Analysis**
-- numerical variables have a right sqewed
-- categorical variables are unbalanced, with 79% of real_state as "flat" and 78% of units concentrated on 50% of sample's neighbourhoods
-
+- The variables "Unnamed: 0" have a uniform distribution
+- The numerical variables have a shift to the right
+- The categorical variables are not balanced, with 79% of properties as "apartments" and 78% of units concentrated in 50% of the sample neighbourhoods
+- 75% of the apartment units have up to 3 bedrooms and up to 2 bathrooms with an average size of 85m2.
+- 75% of the units in Eixample have up to 3 bedrooms and up to 2 bathrooms with an average size of 87m2.
 **Bivariate Analysis**
-- There is only one pair of variables with high correlation: bathroom-square_meters	(0.75)
-- This correlation it does make sense and will be considered during modeling.
-- The most popular unit configuration in dataset have 2 rooms and 1 bathroom with 1836 units (21% of all units).
-- Other popular configurations are 1-1(18%), 3-2(14%), 3-1(13%), 2-2(9%) and 4-2(8%)
-- Those six most popular unit configurations counts for 86% of all units
-- Sarria-Sant Gervasi, Les Corts, and Eixample are the more expensive neighbourhoods with mean prices above dataset mean.
-- Horta- Guinardo, Sant Andreu, Nou Barris are the cheapest neighbourhoods with mean prices bellow dataset mean.
-- apartment and atic are the most expensive unit types together with "other" (being "other" the unit type created to replace NaN in original dataset)
-- flat and study are the cheapest unit types with mean prices bellow dataset mean
-- flats at Eixample is the most popular type of unit and neighbourhood combination, with 78.51% of units at Eixample being flats, and 28.98% of flats are at Eixample.
-- most unit types in do have lift, in flats units the proportion is 74,12%
-- terrace in the other hand seems to be rare and very few units across all neighbourhoods do have terrace
+- 'square_meters' has a positive correlation with 'price', 'rooms' and 'bathrooms'
+- 'square_meters_price' has a negative correlation with 'square_meters', 'rooms' and 'bathrooms'
+- There are only one couple of variables with high correlation: bathroom-square_meters (0.75)
+- The most popular unit configuration in the dataset is 2 bedrooms and 1 bathroom with 1836 units (21% of all units).
+- Other popular configurations are 1-1 (18%), 3-2 (14%), 3-1 (13%), 2-2 (9%) and 4-2 (8%)
+- These six most popular unit configurations represent 86% of all units
+- The "df_pop" data frame includes the most popular units in terms of bedroom/bathroom configuration, representing 94% of the samples
+- Sarrià-Sant Gervasi, Les Corts, Eixample and San Martí are the most expensive neighbourhoods with average prices above the dataset average.
+- Sants-Montjuïc, Horta-Guinardó, Sant Andreu and Nou Barris are the cheapest neighbourhoods with average prices below the dataset average.
+- When comparing the price per square metre, Ciutat Vella and Eixample are the most expensive neighbourhoods. - If we compare square meters, Ciutat Vella is the second lowest and Eixample the third
+- From the perspective of price per square meter, the most attractive neighborhood according to this data could be Les Corts, with an average surface area of ​​89.79 m2 above the average (78.67 m2) and a price per square meter of 15.85 below the average (17.79)
+- From the perspective of price per square meter, the most attractive type of unit according to this data could be the apartment, with an average surface area of ​​80 m2 above the average (78.67 m2) and a price per square meter of 15.76 below the average (17.79)
+- There are 1,777 flats in Eixample, being the most popular unit type and neighborhood combination, with 79.68% of the units in Eixample being flats, and 28.9% of the flats are in Eixample. - In Les Courts there are only 398 flats, which makes it far from the most popular type of housing and neighbourhood combination, although 87.67% of the dwellings in Les Courts are flats, only 6.47% of the flats are in Les Courts.
+- Most types of units have a lift, in the case of flats the proportion is 74.12%
+- Units with a terrace on the other hand, seem to be rare and very few have one
 
-Horta- Guinardo, Sant Andreu, Gràcia, Ciutat Vella, Sarria-Sant Gervasi, Les Corts, Sant Martí, Eixample, Sants-Montjuïc, Nou Barris
+# Notes on Data Preprocesing
+- Preprocessed data on a copy of the original dataset named df2
+- Created a new category "unknown" in the variable 'real_state' replacing NaN
+- Removed the variable "Unnamed: 0" which had no value for modeling
+- There are outliers in all variables. df2.shape:(8188, 9)
+- Applied the Z-score method, which removes outliers with more than 3 standard deviations. Some variables with a relevant percentage of outliers still remain. df3.shape:(7742, 9)
+- Limited outliers to respective whisker boundaries. df4.shape:(7742, 9)
+- Created dummy variables for variables 'real_state' and 'neighborhood'. df5.shape:(7742, 20)
+- Boolean variables were converted to numeric
+- Min-Max scaling was applied. The dataset has features with different scales, normalization ensures that no feature dominates the learning process.
+
+# Notes on EDA (pre-modeling)
+- The shape of the data for modeling (7742.20) does not account for outliers
+- The data for modeling have no missing values ​​and all variables are numeric and scaled
+- Low correlation between variables, with only a couple of variables having a high correlation (bathroom and square footage)
+
+# Notes on Model Building
+- In order to make statistical inferences from a logistic regression model, it is important to ensure that there is no multicollinearity present in the data.
+- Data split 70/30. Shape of Training set :  (5419, 20), Shape of test set :  (2323, 20)
+- 
 
 
 
