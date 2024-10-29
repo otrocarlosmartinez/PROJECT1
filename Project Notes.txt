@@ -61,9 +61,7 @@
 - Low correlation between variables, with only a couple of variables having a high correlation (bathroom and square footage)
 
 # Notes on Model Building
-- In order to make statistical inferences from a logistic regression model, it is important to ensure that there is no multicollinearity present in the data.
 - Data split 70/30. Shape of Training set :  (5419, 20), Shape of test set :  (2323, 20)
-- Based on the provided results, here are some conclusions you can draw about the performance of each model:
 - Performance Metrics:
     - **MAE (Mean Absolute Error)**: Measures the average magnitude of errors in a set of predictions, without considering their direction.
     - **MSE (Mean Squared Error)**: Measures the average of the squares of the errors, giving more weight to larger errors.
@@ -75,9 +73,8 @@
 - **Linear Regression and Ridge Regression**: Similar Performance. Both have similar metrics with MAE around 0.042, MSE around 0.004, RMSE around 0.063, and R2 Score around 0.93, indicating decent performance.
 - **K-Nearest Neighbors (KNN)**: Moderate Performance. It has higher MAE (0.059409), MSE (0.009173), and RMSE (0.095774), with a lower R2 Score (0.847047), indicating it is less accurate compared to the top models.
 - **Lasso Regression**: Poor Performance: It has the highest MAE (0.196899), MSE (0.059972), and RMSE (0.244891), with a negative R2 Score (-0.000026), indicating it performs poorly on this dataset.
-
-
-
+- The three best performing models were selected for model fitting: Random Forest, Decision Tree and Support Vector Regression.
+- **Tuned Random Forest is the best performing model**
 
 
 
