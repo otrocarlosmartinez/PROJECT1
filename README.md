@@ -1,50 +1,69 @@
-# PROYECTO 1
-### PROGRAMA DE ESPECIALIZACIÓN AVANZADA EN INTELIGENCIA ARTIFICIAL Y CIENCIA DE DATOS DE IMPELIA
+# PROYECTO 1: Análisis Predictivo de Precios de Vivienda en Barcelona
 
-### Análisis exploratorio y modelado predictivo de precios de viviendas en Barcelona usando Python y SQL 
-**(Fecha límite de entrega: 4 de noviembre del 2024 hasta las 23:59)**
+### Programa de Especialización Avanzada en Inteligencia Artificial y Ciencia de Datos - IMPELIA
 
-**Objetivo:**
-Desarrollar un análisis completo y un modelo predictivo para los precios de viviendas en Barcelona, utilizando datos extraídos del portal Fotocasa. El objetivo es aplicar técnicas de extracción, manipulación y análisis de datos, así como algoritmos de Machine Learning, para predecir los precios de las viviendas en función de diversas características. 
+**Plazo de entrega**: 4 de noviembre de 2024, 23:59
 
-**Dataset:**
-https://www.kaggle.com/datasets/imanollaconcha/barcelona-fotocasahousingprices?select=Barcelona_Fotocasa_HousingPrices.csv 
+---
 
-- **price**: The price of the real-state.
-- **rooms**: Number of rooms.
-- **bathroom**: Number of bathrooms.
-- **lift**: whether a building has an elevator (also known as a lift in some regions) or not
-- **terrace**: If it has a terrace or not.
-- **square_meters**: Number of square meters.
-- **real_state**: Kind of real-state.
-- **neighborhood**: Neighborhood
-- **square_meters_price**: Price of the square meter.
+### Descripción del Proyecto
 
-**Requisitos:**
-1. SQL y Python: Debéis ser capaces de extraer, transformar y cargar datos (ETL) utilizando tanto SQL como Python. El uso de bases de datos relacionales es clave para gestionar grandes volúmenes de datos de viviendas. 
-2. Uso de GitHub: Toda la documentación, el código y las versiones del proyecto deben estar gestionados en GitHub. Esto implica el uso de control de versiones y Colaboración efectiva a través de esta plataforma. 
-3. Ética de la IA y Gobernanza de Datos: El proyecto debe considerar la privacidad de los datos y el impacto ético de las predicciones. Se requiere que el equipo analice la gobernanza de los datos utilizados, asegurando que el tratamiento de la información cumple con las normativas vigentes (e.g., GDPR). 
-4. Exploratory Data Analysis (EDA): Se debe realizar un EDA exhaustivo utilizando Python, que incluya la visualización de las distribuciones de precios, identificación de patrones en los datos (por ejemplo, según la ubicación o características del inmueble) y detección de posibles outliers. 
-5. Modelos de Machine Learning: Se requiere aplicar y evaluar diferentes algoritmos de ML, tales como:
-- Regresión Lineal: Como punto de partida para predecir el precio.
-- Algoritmos avanzados (si se justifica): Podrían utilizarse árboles de decisión, bosques aleatorios o cualquier otro modelo que ofrezca mejores resultados predictivos. 
+Este proyecto tiene como objetivo principal desarrollar un análisis exploratorio y un modelo predictivo que permita estimar los precios de las viviendas en Barcelona, empleando técnicas avanzadas de Ciencia de Datos e Inteligencia Artificial. Utilizando datos extraídos del portal Fotocasa, se aplicarán técnicas de extracción, transformación y análisis de datos, además de algoritmos de Machine Learning, para ofrecer un modelo robusto que prediga los precios en función de diversas características del inmueble.
 
-**Pasos del Proyecto:**
-1. Extracción y preparación de datos:
-- Uso de SQL y Python: Extraer los datos de precios de viviendas desde el portal Fotocasa. Se requiere que los datos sean almacenados en una base de datos y manipulados usando SQL para su posterior análisis. 
-- Formulación del problema de negocio: El equipo debe definir claramente el problema de predicción, identificando las variables relevantes como la ubicación (código postal o coordenadas), tamaño del inmueble, número de habitaciones, antigüedad, entre otras. 
-- Preparación del dataset: A través de Python y SQL, se debe limpiar y transformar el dataset para eliminar inconsistencias, manejar valores nulos y realizar una correcta codificación de las variables categóricas. 
-2. Análisis Exploratorio de Datos (EDA):
-- Utilizar herramientas como **Jupyter Notebook** o **Google Colab** para realizar un análisis exploratorio detallado, visualizando los patrones en los datos y generando insights clave que sirvan como base para la construcción del modelo. 
-- Visualización de datos: Crear gráficos que representen la distribución de precios, tendencias por zona geográfica, correlaciones entre las variables, etc. El objetivo es entender qué variables influyen más en los precios. 
-3. Modelado Predictivo: 
-- Desarrollo del modelo: Utilizar los datos preparados para construir un modelo de predicción de precios de viviendas utilizando algoritmos de Machine Learning (e.g., regresión lineal). 
-- Validación del modelo: Evaluar el rendimiento del modelo utilizando métricas de precisión y ajustar el modelo según sea necesario. Se debe realizar una comparación entre diferentes algoritmos para seleccionar el más adecuado. 
-4. Entrega y documentación: 
-- Integración con GitHub: Debes subir todo el código, la documentación y el trabajo final a una cuenta de GitHub, asegurándose de hacer un seguimiento de los cambios mediante control de versiones. 
-- Documentación del EDA y modelado: Redactar un informe que detalle el análisis exploratorio, los resultados de la modelización y las recomendaciones finales basadas en los datos obtenidos. 
+### Fuente de Datos
 
-**Resultados Esperados:**
-1. **Análisis Exploratorio Completo**: Informe detallado con visualizaciones y conclusiones clave sobre el mercado de vivienda en Barcelona. 
-2. **Modelo Predictivo**: Modelo capaz de predecir el precio de una vivienda basándose en las características del inmueble con un margen de error aceptable. 
-3. **Código en GitHub**: Repositorio completo con el código utilizado, explicaciones y documentos asociados. 
+Los datos utilizados en este proyecto están disponibles en [Kaggle - Barcelona Fotocasa Housing Prices](https://www.kaggle.com/datasets/imanollaconcha/barcelona-fotocasahousingprices?select=Barcelona_Fotocasa_HousingPrices.csv).
+
+**Variables principales del conjunto de datos**:
+- **price**: Precio de la propiedad en euros.
+- **rooms**: Número de habitaciones.
+- **bathroom**: Número de baños.
+- **lift**: Indica si el edificio dispone de ascensor.
+- **terrace**: Indica si la propiedad cuenta con terraza.
+- **square_meters**: Metros cuadrados de la propiedad.
+- **real_state**: Tipo de propiedad (piso, ático, estudio, etc.).
+- **neighborhood**: Barrio donde se ubica la propiedad.
+- **square_meters_price**: Precio por metro cuadrado.
+
+---
+
+### Requisitos Técnicos
+
+1. **SQL y Python**: Los datos deben ser extraídos, transformados y cargados (ETL) mediante SQL y Python, con énfasis en la gestión de grandes volúmenes de datos utilizando bases de datos relacionales.
+2. **Uso de GitHub**: Toda la documentación, el código y las versiones del proyecto deben gestionarse a través de GitHub, promoviendo el control de versiones y la colaboración en esta plataforma.
+3. **Ética de la IA y Gobernanza de Datos**: Se requiere cumplir con normativas de privacidad de datos (e.g., GDPR) y considerar el impacto ético de las predicciones realizadas por el modelo.
+4. **Exploratory Data Analysis (EDA)**: Realización de un análisis exploratorio exhaustivo para identificar patrones y detectar posibles outliers.
+5. **Modelos de Machine Learning**: Aplicación y evaluación de algoritmos de ML, incluyendo:
+   - Regresión Lineal como punto de partida.
+   - Modelos avanzados (árboles de decisión, bosques aleatorios) si resultan ser más precisos.
+
+---
+
+### Metodología
+
+1. **Extracción y Preparación de Datos**
+   - Extracción de datos de Fotocasa utilizando SQL y Python.
+   - Definición precisa del problema de predicción y selección de variables clave, tales como ubicación, tamaño del inmueble y número de habitaciones.
+   - Limpieza y transformación del conjunto de datos para eliminar inconsistencias, gestionar valores nulos y realizar una correcta codificación de las variables categóricas.
+
+2. **Análisis Exploratorio de Datos (EDA)**
+   - Análisis exhaustivo de los datos con herramientas como **Jupyter Notebook** o **Google Colab**.
+   - Visualización de datos para analizar la distribución de precios, tendencias geográficas y correlaciones entre variables.
+
+3. **Modelado Predictivo**
+   - Construcción de un modelo de predicción de precios de vivienda utilizando algoritmos de Machine Learning.
+   - Evaluación del modelo mediante métricas de precisión y ajuste del modelo según los resultados obtenidos.
+
+4. **Documentación y Entrega**
+   - Publicación del código, documentación y resultados finales en GitHub.
+   - Elaboración de un informe detallado del EDA y del proceso de modelado, destacando las recomendaciones finales y conclusiones basadas en los datos.
+
+---
+
+### Resultados Esperados
+
+1. **Informe de Análisis Exploratorio**: Un informe detallado que incluya visualizaciones y conclusiones clave sobre el mercado inmobiliario en Barcelona.
+2. **Modelo Predictivo de Precios de Vivienda**: Un modelo que, basado en las características de la propiedad, prediga el precio con un margen de error aceptable.
+3. **Repositorio Completo en GitHub**: Código documentado, visualizaciones y reportes detallados disponibles para consulta y análisis.
+
+---
