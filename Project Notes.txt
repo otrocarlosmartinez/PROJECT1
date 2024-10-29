@@ -63,7 +63,18 @@
 # Notes on Model Building
 - In order to make statistical inferences from a logistic regression model, it is important to ensure that there is no multicollinearity present in the data.
 - Data split 70/30. Shape of Training set :  (5419, 20), Shape of test set :  (2323, 20)
-- 
+- Based on the provided results, here are some conclusions you can draw about the performance of each model:
+- Performance Metrics:
+    - **MAE (Mean Absolute Error)**: Measures the average magnitude of errors in a set of predictions, without considering their direction.
+    - **MSE (Mean Squared Error)**: Measures the average of the squares of the errors, giving more weight to larger errors.
+    - **RMSE (Root Mean Squared Error)**: The square root of MSE, providing error in the same units as the target variable.
+    - **R2 Score (Coefficient of Determination)**: Indicates how well the model's predictions approximate the real data points. A value closer to 1 indicates a better fit.
+- **Random Forest**: **Best Performance**. It has the lowest MAE (0.007370), MSE (0.000556), and RMSE (0.023589), and the highest R2 Score (0.990722), indicating it is the most accurate model among the ones tested.
+- **Decision Tree**: **Second Best**. It also performs very well with low MAE (0.010382), MSE (0.001028), and RMSE (0.032058), and a high R2 Score (0.982863).
+- **Support Vector Regressor (SVR)**: **Good Performance**. It has a relatively low MAE (0.041981), MSE (0.003182), and RMSE (0.056408), with a high R2 Score (0.946942).
+- **Linear Regression and Ridge Regression**: Similar Performance. Both have similar metrics with MAE around 0.042, MSE around 0.004, RMSE around 0.063, and R2 Score around 0.93, indicating decent performance.
+- **K-Nearest Neighbors (KNN)**: Moderate Performance. It has higher MAE (0.059409), MSE (0.009173), and RMSE (0.095774), with a lower R2 Score (0.847047), indicating it is less accurate compared to the top models.
+- **Lasso Regression**: Poor Performance: It has the highest MAE (0.196899), MSE (0.059972), and RMSE (0.244891), with a negative R2 Score (-0.000026), indicating it performs poorly on this dataset.
 
 
 
