@@ -63,18 +63,27 @@
 # Notes on Model Building
 - Data split 70/30. Shape of Training set :  (5419, 20), Shape of test set :  (2323, 20)
 - Performance Metrics:
-    - **MAE (Mean Absolute Error)**: Measures the average magnitude of errors in a set of predictions, without considering their direction.
-    - **MSE (Mean Squared Error)**: Measures the average of the squares of the errors, giving more weight to larger errors.
-    - **RMSE (Root Mean Squared Error)**: The square root of MSE, providing error in the same units as the target variable.
-    - **R2 Score (Coefficient of Determination)**: Indicates how well the model's predictions approximate the real data points. A value closer to 1 indicates a better fit.
-- **Random Forest**: **Best Performance**. It has the lowest MAE (0.007370), MSE (0.000556), and RMSE (0.023589), and the highest R2 Score (0.990722), indicating it is the most accurate model among the ones tested.
-- **Decision Tree**: **Second Best**. It also performs very well with low MAE (0.010382), MSE (0.001028), and RMSE (0.032058), and a high R2 Score (0.982863).
-- **Support Vector Regressor (SVR)**: **Good Performance**. It has a relatively low MAE (0.041981), MSE (0.003182), and RMSE (0.056408), with a high R2 Score (0.946942).
-- **Linear Regression and Ridge Regression**: Similar Performance. Both have similar metrics with MAE around 0.042, MSE around 0.004, RMSE around 0.063, and R2 Score around 0.93, indicating decent performance.
-- **K-Nearest Neighbors (KNN)**: Moderate Performance. It has higher MAE (0.059409), MSE (0.009173), and RMSE (0.095774), with a lower R2 Score (0.847047), indicating it is less accurate compared to the top models.
-- **Lasso Regression**: Poor Performance: It has the highest MAE (0.196899), MSE (0.059972), and RMSE (0.244891), with a negative R2 Score (-0.000026), indicating it performs poorly on this dataset.
-- The three best performing models were selected for model fitting: Random Forest, Decision Tree and Support Vector Regression.
-- **Tuned Random Forest is the best performing model**
+    - MAE (Mean Absolute Error): Measures the average magnitude of errors in a set of predictions, without considering their direction.
+    - MSE (Mean Squared Error): Measures the average of the squares of the errors, giving more weight to larger errors.
+    - RMSE (Root Mean Squared Error): The square root of MSE, providing error in the same units as the target variable.
+    - R2 Score (Coefficient of Determination): Indicates how well the model's predictions approximate the real data points. A value closer to 1 indicates a better fit.
+- **Random Forest**: Best Performance. It has the lowest MAE (0.007370), MSE (0.000556), and RMSE (0.023589), and the highest R2 Score (0.990722), indicating it is the most accurate model among the ones tested.
+- **Decision Tree**: Second Best. It also performs very well with low MAE (0.010382), MSE (0.001028), and RMSE (0.032058), and a high R2 Score (0.982863).
+- **Support Vector Regressor (SVR)**: Good Performance. It has a relatively low MAE (0.041981), MSE (0.003182), and RMSE (0.056408), with a high R2 Score (0.946942).
+- Linear Regression and Ridge Regression: Similar Performance. Both have similar metrics with MAE around 0.042, MSE around 0.004, RMSE around 0.063, and R2 Score around 0.93, indicating decent performance.
+- K-Nearest Neighbors (KNN): Moderate Performance. It has higher MAE (0.059409), MSE (0.009173), and RMSE (0.095774), with a lower R2 Score (0.847047), indicating it is less accurate compared to the top models.
+- Lasso Regression: Poor Performance: It has the highest MAE (0.196899), MSE (0.059972), and RMSE (0.244891), with a negative R2 Score (-0.000026), indicating it performs poorly on this dataset.
+- The three best performing models were selected for model tuning: Random Forest, Decision Tree, and Support Vector Regression.
+- After hyperparameter tuning, **Tuned Random Forest**, **Random Forest**, and **Tuned Decision Tree** are the best performing models
+- The 3 best performing models after hyperparameter tuning will be evaluated with CrossValidation
+- 60-20-20 data split for training-validation-testing
+- After CrossValidation, **Tuned Random Forest** turns out to be **the best performing model**
 
+# Conclusions
+- square_meters is the most important variable to predict unit price
+- The most accurate model identified to predict price is: RandomForestRegressor(max_depth=20, min_samples_split=5, n_estimators=200, random_state=1)
+- With this model the performance achieved is MAE:0.00679, MSE:0.0005, RMSE:0.0229, R2 Score: 0.9910
+- Results obtained with scaled data (Min-Max scaling)
+- It may not make much sense to have square_meters_price as the second most important variable to predict unit price. Further development of the model is proposed without considering the variable "square_meters_price"
 
 
