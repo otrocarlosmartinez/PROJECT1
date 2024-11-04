@@ -1,5 +1,5 @@
 # Consolidated notes on Data Overview
-- The variable 'Unnamed' represent index and should be deleted from data
+- The variable 'Unnamed 0:' represent index and should be deleted from data
 - Target variable for modeling is "price"
 - There are 8188 rows and 10 columns.
 - Data types are aligned with information
@@ -25,14 +25,14 @@
 - The variables "Unnamed: 0" have a uniform distribution
 - The numerical variables have a shift to the right
 - The categorical variables are not balanced, with 79% of properties as "apartments" and 78% of units concentrated in 50% of the sample neighbourhoods
-- 75% of the apartment units have up to 3 bedrooms and up to 2 bathrooms with an average size of 85m2.
+- 75% of "flat" units have up to 3 bedrooms and up to 2 bathrooms with an average size of 85m2.
 - 75% of the units in Eixample have up to 3 bedrooms and up to 2 bathrooms with an average size of 87m2.
 - 'square_meters' has a positive correlation with 'price', 'rooms' and 'bathrooms'
 - 'square_meters_price' has a negative correlation with 'square_meters', 'rooms' and 'bathrooms'
 - There are only one couple of variables with high correlation: bathroom-square_meters (0.75)
-- The most popular unit configuration in the dataset is 2 bedrooms and 1 bathroom with 1836 units (21% of all units).
-- Other popular configurations are 1-1 (18%), 3-2 (14%), 3-1 (13%), 2-2 (9%) and 4-2 (8%)
-- These six most popular unit configurations represent 86% of all units
+- The most popular unit configuration in the dataset is 2 bedrooms and 1 bathroom with 1836 units (22.42% of all units).
+- Other popular configurations are 1-1 (18.55%), 3-2 (14.74%), 3-1 (13.71%), 2-2 (8.97%) and 4-2 (7.82%)
+- These six most popular unit configurations represent 86.23% of all units
 - The "df_pop" data frame includes the most popular units in terms of bedroom/bathroom configuration, representing 94% of the samples
 - Sarrià-Sant Gervasi, Les Corts, Eixample and San Martí are the most expensive neighbourhoods with average prices above the dataset average.
 - Sants-Montjuïc, Horta-Guinardó, Sant Andreu and Nou Barris are the cheapest neighbourhoods with average prices below the dataset average.
@@ -47,25 +47,26 @@
 - Preprocessed data on a copy of the original dataset named df2
 - Created a new category "unknown" in the variable 'real_state' replacing NaN
 - Removed the variable "Unnamed: 0" which had no value for modeling
-- There are outliers in all variables. df2.shape:(8188, 9)
-- Applied the Z-score method, which removes outliers with more than 3 standard deviations. Some variables with a relevant percentage of outliers still remain. df3.shape:(7742, 9)
-- Limited outliers to respective whisker boundaries. df4.shape:(7742, 9)
-- Created dummy variables for variables 'real_state' and 'neighborhood'. df5.shape:(7742, 20)
+- There are outliers in all numerical variables. df2_shape:(8188, 9)
+- Applied the Z-score method, which removes outliers with more than 3 standard deviations. Some variables with a relevant percentage of outliers still remain. df3_shape:(7742, 9)
+- Limited outliers to respective whisker boundaries. df4_shape:(7742, 9)
+- Created dummy variables for variables 'real_state' and 'neighborhood' considering drop_first=False. df5_shape:(7742, 22)
+
 - Boolean variables were converted to numeric
 
 # Consolidated notes on EDA (pre-modeling)
-- The shape of the data for modeling (7742, 20) does not account for outliers
+- The shape of the data for modeling (7742, 22) does not account for outliers
 - The data for modeling have no missing values
 - No outliers in the data
 - Low correlation between variables, with only a couple of variables having a high correlation (bathroom and square_meters)
 
-# Consolidated notes on Model Building
+# Consolidated notes on Modeling
 - Defined function "evaluate_model(model, x_test, y_test)", to evaluate and return the model's metrics into a results dataframe
 - Defined function "models_regression_performance_cv_fit(models, x_train, y_train, x_test, y_test, res_df=None)", to compute different metrics to check regression model performance
-- Data preparation for modeling over a copy named df5
+- Data preparation for modeling over a copy named "data"
 - Min-Max scaling was applied. The dataset has features with different scales, normalization ensures that no feature dominates the learning process.
 - Added constant for modeling
-- Data split 70/30. Shape of Training set :  (5419, 20), Shape of test set :  (2323, 20)
+- Data split 70/30. Shape of Training set :  (5419, 22), Shape of test set :  (2323, 22)
 - Performance Metrics:
     - MAE (Mean Absolute Error): Measures the average magnitude of errors in a set of predictions, without considering their direction.
     - MSE (Mean Squared Error): Measures the average of the squares of the errors, giving more weight to larger errors.
@@ -79,24 +80,24 @@
     - Random Forest
     - K-Nearest Neighbors
     - Support Vector Regressor
-- **Random Forest**: Best Performance. It has the lowest MAE (0.007322), MSE (0.000576), and RMSE (0.024001), and the highest R2 Score (0.990394), indicating it is the most accurate model among the ones tested.
-- **Decision Tree**: Second Best. It also performs very well with low MAE (0.010362), MSE (0.000986), and RMSE (0.031405), and a high R2 Score (0.983554).
-- **Support Vector Regressor (SVR)**: Good Performance. It has a relatively low MAE (0.041197), MSE (0.003180), and RMSE (0.056396), with a high R2 Score (0.946966).
-- Linear Regression and Ridge Regression: Similar Performance. Both have similar metrics with MAE around 0.042, MSE around 0.004, RMSE around 0.063, and R2 Score around 0.93, indicating decent performance.
-- K-Nearest Neighbors (KNN): Moderate Performance. It has higher MAE (0.058904), MSE (0.008940), and RMSE (0.094549), with a lower R2 Score (0.850933), indicating it is less accurate compared to the top models.
-- Lasso Regression: Poor Performance: It has the highest MAE (0.196899), MSE (0.059972), and RMSE (0.244891), with a negative R2 Score (-0.000026), indicating it performs poorly on this dataset.
+- **Random Forest**: Best Performance. It has the lowest MAE (0.007321), MSE (0.000585), and RMSE (0.024185), and the highest R2 Score (0.990246), indicating it is the most accurate model among the ones tested.
+- **Decision Tree**: Second Best. It also performs very well with low MAE, MSE, and RMSE, and a high R2 Score.
+- **Support Vector Regressor (SVR)**: Good Performance. It has a relatively low MAE, MSE, and RMSE, with a high R2 Score.
+- Linear Regression and Ridge Regression: Similar Performance. Both have similar values for all metrics indicating decent performance.
+- K-Nearest Neighbors (KNN): Moderate Performance. It has higher MAE, MSE, and RMSE, with a lower R2 Score, indicating it is less accurate compared to the top models.
+- Lasso Regression: Poor Performance: It has the worst (highest) MAE, MSE, and RMSE, with a negative R2 Score, indicating it performs poorly on this dataset.
 - The three best performing models were selected for model tuning: Random Forest, Decision Tree, and Support Vector Regression.
 - After hyperparameter tuning, **Tuned Random Forest**, **Random Forest**, and **Tuned Decision Tree** are the best performing models
 - The 3 best performing models after hyperparameter tuning will be evaluated with CrossValidation
 - 60-20-20 data split for training-validation-testing
-- **Tuned Random Forest** is the best performing model among the tuned models 
+- **Tuned Random Forest** is the best performing model among the cross-validated models
 - From all models evaluated, **Tuned Random Forest** turns out to be **the best performing model**
 
 # Conclusions
 - square_meters is the most important variable to predict unit price and at least an aproximated value should by provided as input.
-- It may not make much sense to have square_meters_price as the second most important variable to predict unit price. But having square_meters_price as the second most important variable, and considering it might be an unknown input, the model could consider neighborhood mean to inpute.
-- The most accurate model identified to predict price is: RandomForestRegressor(max_depth= 30, min_samples_split= 5, n_estimators=300)
-- With this model the performance achieved is MAE:0.00725, MSE:0.00054, RMSE:0.02337, and R2 Score: 0.99089
+- Having square_meters_price as the second most important variable, and considering it might be an unknown input, the model could consider mean by to inpute.
+- The most accurate model identified to predict price is: RandomForestRegressor(max_depth= 20, min_samples_split= 5, n_estimators=300)
+- With this model the performance achieved is MAE:0.00749, MSE:0.000554, RMSE:0.023538, and R2 Score: 0.990597
 - Results obtained with scaled data (Min-Max scaling)
 
 

@@ -60,3 +60,38 @@ print("Prediction (scaled):", prediction)
 # Inverse transform the output 
 predicted_price = loaded_scaler.inverse_transform(np.array([[prediction[0]]] * new_data.shape[1]))[0][0]
 print("Predicted value (original scale):", predicted_price)
+
+
+import joblib
+import os
+import numpy as np
+import pandas as pd
+
+# Set the working directory to where the .pkl files are located
+os.chdir("C:\\Users\\otroc\\OneDrive\\Documents\\Carlos\\IMPELIA_PEA AIDS_PROJECT1\\PROJECT1")
+
+# Load the model and scaler
+loaded_model = joblib.load("Random_Forest_Tuned.pkl")
+loaded_scaler = joblib.load("scaler.pkl")
+
+# Create new data as a DataFrame with the same column names as the training data
+new_data = pd.DataFrame(
+    [[1,3,1,1,0,60,12.5,0,1,0,0,0,1,0,0,0,0,0,0]], 
+    columns=loaded_scaler.feature_names_in_
+)
+
+# Scale the new data
+scaled_data = loaded_scaler.transform(new_data)
+
+# Predict using the loaded model
+prediction_scaled = loaded_model.predict(scaled_data)
+print("Scaled Prediction:", prediction_scaled)
+
+# If the output was scaled during training, apply inverse scaling to obtain the original scale
+# Note: Replace "output_scaler.pkl" with the actual scaler used for the target variable if separate.
+try:
+    output_scaler = joblib.load("output_scaler.pkl")
+    prediction_original_scale = output_scaler.inverse_transform(prediction_scaled.reshape(-1, 1))[0]
+    print("Prediction in original scale:", prediction_original_scale)
+except FileNotFoundError:
+    print("Output scaler not found; displaying scaled prediction only.")
