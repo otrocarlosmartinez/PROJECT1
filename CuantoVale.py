@@ -38,10 +38,8 @@ y.head()
 2	0.514436
 3	1.000000
 4	0.209974
-
-
-
 '''
+
 import joblib
 import os
 import numpy as np
@@ -75,5 +73,4 @@ prediction_scaled = loaded_model.predict(scaled_data_with_constant)
 output_scaler = joblib.load("output_scaler.pkl")
 prediction_original_scale = output_scaler.inverse_transform(prediction_scaled.reshape(-1, 1))[0]
 print("Predicted price (EUR):", prediction_original_scale)
-
 
